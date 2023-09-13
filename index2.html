@@ -1,41 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-        .movie{
-            border:1px solid black;
-            margin:5px;
-            padding:5px;
-        }
+      .movie {
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="movielist"></div>
     <script>
-        let movieList;
-        let movielistDom = document.querySelector("#movielist");
+      let movieList;
+      let movielistDom = document.querySelector("#movielist");
 
-    fetch("movie_list.json") //load json data from file
+      fetch("movie_list.json") //load json data from file
         .then((x) => x.text())
         .then((y) => {
-            movieList = JSON.parse(y);
+          movieList = JSON.parse(y);
           showList();
         });
 
-        function showList()
-        {
-            console.log(movieList);
-            for (a=0;a<movieList.length;a++)
-            {
-                console.log(movieList[a].name);
-                movielistDom.innerHTML += "<div class='movie'>"+movieList[a].name+"</div>";
-            }
+      function showList() {
+        console.log(movieList);
+        for (a = 0; a < movieList.length; a++) {
+          console.log(movieList[a].name);
+          movielistDom.innerHTML +=
+            "<div class='movie'>" + movieList[a].name + "</div>";
         }
-
-
+      }
     </script>
-</body>
+  </body>
 </html>
