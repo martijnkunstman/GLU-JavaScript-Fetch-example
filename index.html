@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="list"></div>
+    <div id="detail"></div>
+
+    <script>
+      let movieList;
+      let movieDetail;
+      let listDom = document.querySelector("#list");
+      let detailDom = document.querySelector("#detail");
+
+      fetch("movie_list.json")
+        .then((x) => x.text())
+        .then((y) => {
+          movieList = JSON.parse(y).movie_list;
+          showList();
+        });
+
+      let showList = () => {
+        console.log(movieList);
+        movieList.map((x) => {
+          console.log(x);
+          listDom.innerHTML += `<div onclick="showDetail(${x.id})" data_id="${x.id}">${x.name}</div>`;
+        });
+      };
+
+      function showDetail(id) {
+        console.log(id);
+        fetch("movie_detail.json")
+          .then((x) => x.text())
+          .then((y) => {
+            let movieDetail = JSON.parse(y).movie_detail;
+            console.log(movieDetail);
+
+            movieDetail.map((x) => {
+              if (x.id == id) {
+                detailDom.innerHTML = `<div>${x.description}</div>`;
+              }
+            });
+            
+          });
+      }
+    </script>
+  </body>
+</html>
