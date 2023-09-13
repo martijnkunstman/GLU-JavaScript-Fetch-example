@@ -18,7 +18,7 @@
       fetch("movie_list.json") //replace this with API utl
         .then((x) => x.text())
         .then((y) => {
-          movieList = JSON.parse(y).movie_list;
+          movieList = JSON.parse(y);
           showList();
         });
 
