@@ -15,7 +15,7 @@
       let listDom = document.querySelector("#list");
       let detailDom = document.querySelector("#detail");
 
-      fetch("movie_list.json")
+      fetch("movie_list.json") //replace this with API utl
         .then((x) => x.text())
         .then((y) => {
           movieList = JSON.parse(y).movie_list;
@@ -32,20 +32,28 @@
 
       function showDetail(id) {
         console.log(id);
-        fetch("movie_detail.json")
+        fetch("movie_detail.json") //replace this with API utl (add ?id=1)
           .then((x) => x.text())
           .then((y) => {
             let movieDetail = JSON.parse(y).movie_detail;
             console.log(movieDetail);
 
+            //temp start
             movieDetail.map((x) => {
               if (x.id == id) {
                 detailDom.innerHTML = `<div>${x.description}</div>`;
               }
             });
-            
+            //temp end
+
+            /*
+            //load json with correct PHP API
+            detailDom.innerHTML = `<div>${x.description}</div>`;
+            */
+
           });
       }
+
     </script>
   </body>
 </html>
