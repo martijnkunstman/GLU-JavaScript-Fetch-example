@@ -4,9 +4,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .listELement {
+        cursor: pointer;
+        border: 1px solid grey;
+        background: yellow;
+        margin: 10px;
+        display: inline-block;
+        padding: 10px;
+      }
+      .listELement:hover {
+        background: red;
+      }
+    </style>
   </head>
   <body>
     <div id="list"></div>
+    <div>-----</div>
     <div id="detail"></div>
 
     <script>
@@ -15,7 +29,7 @@
       let listDom = document.querySelector("#list");
       let detailDom = document.querySelector("#detail");
 
-      fetch("movie_list.json") //replace this with API utl
+      fetch("index.php")
         .then((x) => x.text())
         .then((y) => {
           movieList = JSON.parse(y);
@@ -23,37 +37,20 @@
         });
 
       let showList = () => {
-        console.log(movieList);
         movieList.map((x) => {
           console.log(x);
-          listDom.innerHTML += `<div onclick="showDetail(${x.id})" data_id="${x.id}">${x.name}</div>`;
+          listDom.innerHTML += `<div class="listELement" onclick="showDetail(${x.movie_id})">${x.title}</div>`;
         });
       };
 
       function showDetail(id) {
-        console.log(id);
-        fetch("movie_detail.json") //replace this with API utl (add ?id=1)
+        fetch("index.php?id=" + id)
           .then((x) => x.text())
           .then((y) => {
-            let movieDetail = JSON.parse(y).movie_detail;
-            console.log(movieDetail);
-
-            //temp start
-            movieDetail.map((x) => {
-              if (x.id == id) {
-                detailDom.innerHTML = `<div>${x.description}</div>`;
-              }
-            });
-            //temp end
-
-            /*
-            //load json with correct PHP API
-            detailDom.innerHTML = `<div>${x.description}</div>`;
-            */
-
+            let movieDetail = JSON.parse(y)[0];
+            detailDom.innerHTML = `<div>${movieDetail.title} - actors: ${movieDetail.actor_names}</div>`;
           });
       }
-
     </script>
   </body>
 </html>
