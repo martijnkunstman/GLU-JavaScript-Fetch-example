@@ -1,5 +1,6 @@
 # GLU-JavaScript-Fetch-example
-An example to load and use external JSON-data with JavaScript
+An example to load and use external JSON-data with JavaScript.
+External JSON from API created with SQL and PHP.
 
 Working examples at:
 

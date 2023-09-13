@@ -37,13 +37,13 @@
         });
 
       let showList = () => {
-        movieList.map((x) => {
-          console.log(x);
-          listDom.innerHTML += `<div class="listELement" onclick="showDetail(${x.movie_id})">${x.title}</div>`;
+        movieList.map((movie) => {
+          console.log(movie);
+          listDom.innerHTML += `<div class="listELement" onclick="showDetail(${movie.movie_id})">${movie.title}</div>`;
         });
       };
 
-      function showDetail(id) {
+      let showDetail = (id) => {
         fetch("index.php?id=" + id)
           .then((x) => x.text())
           .then((y) => {

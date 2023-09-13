@@ -30,7 +30,7 @@ $stmt->bindParam(':id', $_GET['id']);
     }
     else 
     {
-        $stmt = $conn->prepare("SELECT m.title FROM movies m");
+        $stmt = $conn->prepare("SELECT m.title, m.movie_id FROM movies m");
     } 
 
     $stmt->execute();
